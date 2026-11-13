@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tesrael — Tesla Parts Store</title>
+  <meta name="description" content="Premium Tesla replacement parts and accessories. Browse prices and add to cart — online purchasing coming soon." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#" aria-label="Tesrael home">
+        <span class="brand-mark">T</span>
+        <span class="brand-text">Tesrael</span>
+      </a>
+      <nav class="nav">
+        <a href="#catalog">Catalog</a>
+        <a href="#models">Models</a>
+        <a href="#about">About</a>
+      </nav>
+      <button class="cart-btn" id="openCartBtn" aria-label="Open cart">
+        <span>Cart</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Tesla parts & accessories</p>
+          <h1>Precision parts for every Tesla model.</h1>
+          <p class="hero-sub">Browse genuine-fit components, compare prices, and build your cart. Online checkout is coming soon — for now, explore our catalog and pricing.</p>
+          <div class="hero-actions">
+            <a href="#catalog" class="btn btn-primary">Browse catalog</a>
+            <a href="#about" class="btn btn-secondary">Learn more</a>
+          </div>
+          <p class="notice-inline">Prices shown are for reference. Purchasing is not yet available.</p>
+        </div>
+        <div class="hero-card" aria-hidden="true">
+          <div class="hero-card-glow"></div>
+          <div class="hero-stat">
+            <span class="stat-label">Models supported</span>
+            <span class="stat-value">Model S · 3 · X · Y · Cybertruck</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-label">Catalog</span>
+            <span class="stat-value">Curated parts with transparent pricing</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-label">Status</span>
+            <span class="stat-value status-pill">Store preview — checkout coming soon</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="models">
+      <div class="container">
+        <div class="section-head">
+          <h2>Shop by model</h2>
+          <p>Find parts tailored to your Tesla.</p>
+        </div>
+        <div class="model-grid" id="modelFilters">
+          <button class="model-chip active" data-model="All">All models</button>
+          <button class="model-chip" data-model="Model 3">Model 3 (incl. Highland)</button>
+          <button class="model-chip" data-model="Model Y">Model Y (incl. Juniper)</button>
+          <button class="model-chip" data-model="Model S">Model S</button>
+          <button class="model-chip" data-model="Model X">Model X</button>
+          <button class="model-chip" data-model="Cybertruck">Cybertruck</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="catalog">
+      <div class="container">
+        <div class="section-head row">
+          <div>
+            <h2>Parts catalog</h2>
+            <p id="catalogMeta">Showing all parts</p>
+          </div>
+          <div class="controls">
+            <label class="search">
+              <span class="sr-only">Search parts</span>
+              <input type="search" id="searchInput" placeholder="Search parts..." list="productSuggestions" />
+            </label>
+            <datalist id="productSuggestions"></datalist>
+            <select id="productSelect" aria-label="Select a specific product">
+              <option value="">All products (select specific)</option>
+            </select>
+            <select id="categorySelect" aria-label="Filter by category">
+              <option value="All">All categories</option>
+            </select>
+          </div>
+        </div>
+        <div class="product-grid" id="productGrid"></div>
+      </div>
+    </section>
+
+    <section class="section alt" id="about">
+      <div class="container about-grid">
+        <div>
+          <h2>About Tesrael</h2>
+          <p>Tesrael is a concept storefront for Tesla owners looking for high-quality replacement parts and accessories. We focus on clear pricing, compatibility by model, and a clean browsing experience.</p>
+          <p><strong>Note:</strong> This is a preview experience. You can browse products, view prices, and add items to your cart, but completing a purchase is not available yet.</p>
+        </div>
+        <ul class="feature-list">
+          <li><strong>Transparent pricing</strong><span>Every item lists a clear price up front.</span></li>
+          <li><strong>Model compatibility</strong><span>Filter parts for Model S, 3, X, Y, and Cybertruck.</span></li>
+          <li><strong>Curated selection</strong><span>Common maintenance, exterior, interior, and performance parts.</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Tesrael. Preview store — not an official Tesla store.</p>
+      <p class="footer-note">Tesla and model names are trademarks of Tesla, Inc. Used for compatibility reference only.</p>
+    </div>
+  </footer>
+
+  <div class="overlay" id="overlay" hidden></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-label="Shopping cart">
+    <div class="cart-header">
+      <h3>Your cart</h3>
+      <button class="icon-btn" id="closeCartBtn" aria-label="Close cart">&times;</button>
+    </div>
+    <div class="cart-body" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Subtotal</span>
+        <strong id="cartTotal">$0.00</strong>
+      </div>
+      <p class="cart-disclaimer">Prices shown for reference. Checkout is not available yet.</p>
+      <button class="btn btn-primary btn-block" id="checkoutBtn">Proceed to checkout</button>
+    </div>
+  </aside>
+
+  <div class="product-modal" id="productModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Product details">
+    <div class="product-modal-inner" id="productModalInner"></div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
